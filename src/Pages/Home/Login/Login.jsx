@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import loginPic from '../../../assets/images/login/login.svg'
 
 
@@ -25,13 +26,13 @@ const Login = () => {
                     <form onSubmit={handelLogin} className="card-body">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text font-semibold text-lg">Email</span>
                             </label>
                             <input type="email" name='email' placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Password</span>
+                                <span className="label-text font-semibold text-lg">Password</span>
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                             <label className="label">
@@ -40,6 +41,10 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn bg-[#FF3811] text-white hover:text-[#FF3811]">Login</button>
+                        </div>
+                        <div className='text-center mt-2'>
+                        
+                            <p>Have an account? <Link className='text-[#FF3811] font-semibold'>Sign In</Link></p>
                         </div>
                     </form>
                 </div>
