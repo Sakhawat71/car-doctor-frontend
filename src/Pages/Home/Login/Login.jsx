@@ -27,11 +27,11 @@ const Login = () => {
     return (
         <div className="hero min-h-screen">
             <div className="hero-content block lg:flex gap-x-20 ">
-                <div className="lg:w-1/2 border hidden lg:block">
+                <div className="lg:w-1/2 hidden lg:block">
                     <img src={loginPic} alt="login image" />
                 </div>
 
-                <div className="card border lg:w-1/2 shadow-2xl bg-base-100">
+                <div className="card lg:w-1/2 shadow-2xl bg-base-100">
                     <h1 className='font-bold text-3xl mt-5 text-center text-[#444]'>Login</h1>
 
                     <form onSubmit={handelLogin} className="card-body">
@@ -53,7 +53,7 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <button className="btn bg-[#FF3811] text-white hover:text-[#FF3811]">Sign in</button>
                         </div>
-                        <div className='text-center mt-2'>
+                        <div className='text-center mt-4'>
                         
                             <p>Have an account? <Link to={'/signup'} className='text-[#FF3811] font-semibold'>Sign Up</Link></p>
                         </div>

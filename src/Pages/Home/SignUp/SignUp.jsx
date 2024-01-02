@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import loginPic from '../../../assets/images/login/login.svg'
-import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
@@ -30,14 +30,14 @@ const SignUp = () => {
     return (
         <div className="hero min-h-screen">
             <div className="hero-content block lg:flex gap-x-20 ">
-                <div className="lg:w-1/2 border hidden lg:block">
+                <div className="lg:w-1/2 hidden lg:block">
                     <img src={loginPic} alt="login image" />
                 </div>
 
-                <div className="card border lg:w-1/2 shadow-2xl bg-base-100">
+                <div className="card lg:w-1/2 shadow-2xl bg-base-100">
                     <h1 className='font-bold text-3xl mt-5 text-center text-[#444]'>Sign Up</h1>
 
-                    <form onSubmit={handelSignUp} className="card-body">
+                    <form onSubmit={handelSignUp} className="card-body pt-2">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold text-lg">Name</span>
@@ -62,8 +62,9 @@ const SignUp = () => {
                         </div>
                         <div className='text-center mt-2'>
                             <div className="">
-                                <p className="text-lg font-medium">Or Sign Up with</p>
-                                <Link><FaGoogle className="text-xl font-bold  mx-auto"/></Link>
+                                <p className="text-lg font-medium flex text-center items-center justify-center my-3">Or Sign Up with 
+                                <span><Link><FcGoogle className="ml-2 text-3xl"/></Link></span></p>
+                                
                             </div>
                             <p>Already have an account? <Link to={"/login"} className='text-[#FF3811] font-semibold'>Login</Link></p>
                         </div>
