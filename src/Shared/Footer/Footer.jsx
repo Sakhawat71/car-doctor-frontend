@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content">
+        <footer className="footer p-10 bg-neutral text-neutral-content">
             <aside>
                 <img src="/src/assets/logo.svg" alt="logo" />
                 <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
