@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
 import loginPic from '../../../assets/images/login/login.svg'
 import { FaGoogle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 
 const SignUp = () => {
 
+    const {signUpWithEmailPass} = useContext(AuthContext);
 
     const handelSignUp = e => {
         e.preventDefault();
-        
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log({name,email,password})
+
+        signUpWithEmailPass(email,password)
+        .then(result => {
+            console.log(result.user)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
     }
 
     return (
