@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { GoArrowRight } from "react-icons/go";
+import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
 
-    const {img,price,title} = service;
-    console.log(service)
+    const {_id,img,price,title} = service;
+    console.log(_id)
 
     return (
         <div className="card card-compact  bg-base-100 shadow-xl px-6 pt-4 pb-2">
@@ -15,7 +16,7 @@ const ServiceCard = ({ service }) => {
                 <h2 className="card-title text-[#444] text-2xl font-bold">{title}</h2>
                 <div className="card-actions justify-between items-center">
                     <h3 className='text-xl font-semibold text-[#FF3811]'>Price: {price}</h3>
-                    <button ><GoArrowRight className='text-2xl text-[#FF3811]'/></button>
+                    <Link to={`/checkout/${_id}`}><button ><GoArrowRight className='text-2xl text-[#FF3811]'/></button></Link>
                 </div>
             </div>
         </div>
