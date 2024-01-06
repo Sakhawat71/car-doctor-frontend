@@ -48,7 +48,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/checkout/:id",
-                element: <Checkout></Checkout>
+                element: <Checkout></Checkout>,
+                loader: ({params})=> fetch(`https://car-doctor-server-nu-ecru.vercel.app/services/${params.id}`)
             }
         ]
     },
