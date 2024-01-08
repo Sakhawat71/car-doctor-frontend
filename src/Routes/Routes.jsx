@@ -9,6 +9,8 @@ import About from "../Pages/About/About";
 import Login from "../Pages/Home/Login/Login";
 import SignUp from "../Pages/Home/SignUp/SignUp";
 import Checkout from "../Pages/Checkout/Checkout";
+import Bookings from "../Pages/Bookings/Bookings";
+import PrivetRoute from "./PrivetRoute";
 
 
 
@@ -49,7 +51,11 @@ const router = createBrowserRouter([
             {
                 path: "/checkout/:id",
                 element: <Checkout></Checkout>,
-                loader: ({params})=> fetch(`https://car-doctor-server-nu-ecru.vercel.app/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://car-doctor-server-nu-ecru.vercel.app/services/${params.id}`)
+            },
+            {
+                path: "/bookings",
+                element: <PrivetRoute><Bookings></Bookings></PrivetRoute>
             }
         ]
     },

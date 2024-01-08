@@ -12,14 +12,18 @@ const Navbar = () => {
         <li> <NavLink to="/services">Services</NavLink> </li>
         <li> <NavLink to="/blog">Blog</NavLink> </li>
         <li> <NavLink to="/contact">Contact</NavLink> </li>
+        {
+            user &&
+                <li> <NavLink to="/bookings">My Bookings</NavLink> </li>
+        }
     </>
 
-    const handelLogout = () =>{
+    const handelLogout = () => {
         logOut()
-        .then(()=>{})
-        .catch(error => {
-            console.log(error)
-        })
+            .then(() => { })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
@@ -50,8 +54,8 @@ const Navbar = () => {
                 <>
                     {
                         user?.email ? <Link onClick={handelLogout} className="btn text-[#FF3811] btn-outline hover:bg-white hover:text-[#FF3811]">Log out</Link>
-                        : 
-                        <Link to={"/login"} className="btn text-[#FF3811] btn-outline hover:bg-white hover:text-[#FF3811]">Log in</Link>
+                            :
+                            <Link to={"/login"} className="btn text-[#FF3811] btn-outline hover:bg-white hover:text-[#FF3811]">Log in</Link>
                     }
                 </>
             </div>
