@@ -1,18 +1,20 @@
 import PropTypes from 'prop-types';
 import { RxCross1 } from "react-icons/rx";
 
-const BookingRow = ({ booking }) => {
+const BookingRow = ({ booking , handelDelete }) => {
 
-    console.log(booking)
-    const { img, title, price, date, customarName } = booking;
+    // console.log(booking)
+    const { _id, img, title, price, date, customarName } = booking;
+
+    
 
     return (
         <tbody>
             {/* row */}
             <tr>
                 <th>
-                    <button onClick={''} className="btn btn-sm btn-circle btn-outline text-xl">
-                        <RxCross1/>
+                    <button onClick={() => handelDelete(_id)} className="btn btn-sm btn-circle btn-outline text-xl hover:bg-[#FF3811] hover:border-none">
+                        <RxCross1 />
                     </button>
                 </th>
                 <td>
@@ -42,6 +44,7 @@ const BookingRow = ({ booking }) => {
 
 BookingRow.propTypes = {
     booking: PropTypes.object,
+    handelDelete: PropTypes.func,
 };
 
 export default BookingRow;
