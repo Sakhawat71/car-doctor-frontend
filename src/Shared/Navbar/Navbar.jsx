@@ -40,7 +40,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <Link to="/" className="btn btn-ghost text-xl">
-                    <img src="/src/assets/logo.svg" className="w-3/5" alt="website logo" /></Link>
+                    <img src="/logo.svg" className="w-3/5" alt="website logo" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
