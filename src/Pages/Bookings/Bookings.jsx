@@ -16,7 +16,7 @@ const Bookings = () => {
     }, [user])
 
     const handelDelete = id => {
-        // console.log(id)
+
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -27,7 +27,6 @@ const Bookings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // console.log(id)
 
                 axios.delete(`https://car-doctor-server-nu-ecru.vercel.app/bookings/${id}`)
                     .then(result => {
@@ -35,15 +34,33 @@ const Bookings = () => {
                         if (result.data.deletedCount === 1) {
                             const remaining = bookings.filter(booking => booking._id !== id)
                             setBookings(remaining)
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
                         }
                     })
             }
         });
+    }
+
+    const handelUpdateConfirm = id => {
+        console.log(id)
+        axios.patch(`https://car-doctor-server-nu-ecru.vercel.app/bookings/${id}`, { status: 'confirm' })
+            .then(data => {
+                if (data.data.modifiedCount === 1) {
+
+                    const remaining = bookings.filter(booking => booking._id !== id);
+                    const updeated = bookings.find(booking => booking._id === id);
+                    updeated.status = "confirm";
+                    const newBookings = [updeated, ...remaining]
+                    setBookings(newBookings)
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     return (
@@ -71,6 +88,7 @@ const Bookings = () => {
                             key={booking._id}
                             booking={booking}
                             handelDelete={handelDelete}
+                            handelUpdateConfirm={handelUpdateConfirm}
                         ></BookingRow>)
                     }
                 </table>
