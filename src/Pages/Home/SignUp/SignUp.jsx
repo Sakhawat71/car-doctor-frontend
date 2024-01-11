@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginPic from '../../../assets/images/login/login.svg'
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import axios from "axios";
 
 
 const SignUp = () => {
 
     const {signUpWithEmailPass} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handelSignUp = e => {
         e.preventDefault();
@@ -15,11 +19,28 @@ const SignUp = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({name,email,password})
+        // console.log({name,email,password})
 
         signUpWithEmailPass(email,password)
         .then(result => {
-            console.log(result.user)
+            const user = result.user;
+            updateProfile(user , {
+                displayName: name,
+            })
+            .then(()=>{
+                console.log('profile update with name')
+            })
+            .catch(error => {
+                console.log('name can`t update',error)
+            })
+            // navigate(location?.state ? location?.state : '/')
+
+            //jwt
+            const userJwt = {email};
+            axios.post('http://localhost:5000/jwt',userJwt)
+            .then(res => {
+                console.log(res.data)
+            })
         })
         .catch(error => {
             console.log(error)

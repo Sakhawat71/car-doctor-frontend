@@ -8,7 +8,7 @@ const Checkout = () => {
     const { user } = useContext(AuthContext)
     const service = useLoaderData();
     const {_id,price,title,img} = service;
-    console.log(service)
+    console.log(user)
 
     const handelCheckout = e => {
         e.preventDefault()
@@ -30,7 +30,7 @@ const Checkout = () => {
             title,
             img
         }
-        console.log(order)
+        // console.log(order)
 
         axios.post(`https://car-doctor-server-nu-ecru.vercel.app/bookings`,order)
         .then(data => {
