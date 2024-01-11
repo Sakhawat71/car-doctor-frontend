@@ -2,28 +2,35 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginPic from '../../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import axios from 'axios';
 
 
 const Login = () => {
 
-    const {signIn} = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
-    const handelLogin = e =>{
+    const handelLogin = e => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         // console.log({email,password})
 
-        signIn(email,password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            navigate(location?.state ? location?.state : '/')
-        })
-        .catch(error => console.log(error))
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(location?.state ? location?.state : '/')
+                //jwt
+                const userJwt = { email };
+                axios.post('https://car-doctor-server-nu-ecru.vercel.app/jwt', userJwt)
+                    .then(res => {
+                        console.log(res.data)
+                    })
+            })
+            .catch(error => console.log(error))
 
     }
 
@@ -57,7 +64,7 @@ const Login = () => {
                             <button className="btn bg-[#FF3811] text-white hover:text-[#FF3811]">Sign in</button>
                         </div>
                         <div className='text-center mt-4'>
-                        
+
                             <p>Have an account? <Link to={'/signup'} className='text-[#FF3811] font-semibold'>Sign Up</Link></p>
                         </div>
                     </form>

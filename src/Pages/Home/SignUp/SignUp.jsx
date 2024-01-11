@@ -4,7 +4,6 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import axios from "axios";
 
 
 const SignUp = () => {
@@ -33,14 +32,7 @@ const SignUp = () => {
             .catch(error => {
                 console.log('name can`t update',error)
             })
-            // navigate(location?.state ? location?.state : '/')
-
-            //jwt
-            const userJwt = {email};
-            axios.post('http://localhost:5000/jwt',userJwt)
-            .then(res => {
-                console.log(res.data)
-            })
+            navigate(location?.state ? location?.state : '/')
         })
         .catch(error => {
             console.log(error)
