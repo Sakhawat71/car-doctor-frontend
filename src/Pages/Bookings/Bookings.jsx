@@ -10,10 +10,12 @@ const Bookings = () => {
     const [bookings, setBookings] = useState([])
 
 
+    // const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `https://car-doctor-server-nu-ecru.vercel.app/bookings?email=${user?.email}`;
     useEffect(() => {
-        axios.get(`https://car-doctor-server-nu-ecru.vercel.app/bookings?email=${user?.email}`)
+        axios.get(url, { withCredentials: true })
             .then(data => setBookings(data.data))
-    }, [user])
+    }, [url])
 
     const handelDelete = id => {
 

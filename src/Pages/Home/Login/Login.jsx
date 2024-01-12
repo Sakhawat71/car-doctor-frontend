@@ -22,12 +22,15 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(location?.state ? location?.state : '/')
+
                 //jwt
                 const userJwt = { email };
-                axios.post('https://car-doctor-server-nu-ecru.vercel.app/jwt', userJwt)
+                axios.post('https://car-doctor-server-nu-ecru.vercel.app/jwt', userJwt, { withCredentials: true })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
+                        if (res.data.seccess) {
+                            navigate(location?.state ? location?.state : '/')
+                        }
                     })
             })
             .catch(error => console.log(error))
