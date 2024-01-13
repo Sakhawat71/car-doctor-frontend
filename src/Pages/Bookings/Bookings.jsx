@@ -10,8 +10,8 @@ const Bookings = () => {
     const [bookings, setBookings] = useState([])
 
 
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
     // const url = `http://localhost:5000/bookings?email=${user?.email}`;
-    const url = `https://car-doctor-server-nu-ecru.vercel.app/bookings?email=${user?.email}`;
     useEffect(() => {
         axios.get(url, { withCredentials: true })
             .then(data => setBookings(data.data))
@@ -30,7 +30,7 @@ const Bookings = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`https://car-doctor-server-nu-ecru.vercel.app/bookings/${id}`)
+                axios.delete(`http://localhost:5000/bookings/${id}`)
                     .then(result => {
                         console.log(result.data)
                         if (result.data.deletedCount === 1) {
@@ -49,7 +49,7 @@ const Bookings = () => {
 
     const handelUpdateConfirm = id => {
         console.log(id)
-        axios.patch(`https://car-doctor-server-nu-ecru.vercel.app/bookings/${id}`, { status: 'confirm' })
+        axios.patch(`http://localhost:5000/bookings/${id}`, { status: 'confirm' })
             .then(data => {
                 if (data.data.modifiedCount === 1) {
 
