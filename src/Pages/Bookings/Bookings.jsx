@@ -3,18 +3,24 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import BookingRow from "./BookingRow";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Bookings = () => {
 
     const { user, loading } = useContext(AuthContext);
     const [bookings, setBookings] = useState([])
+    const axiosSecure = useAxiosSecure();
 
+    // const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `/bookings?email=${user?.email}`;
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
     useEffect(() => {
-        axios.get(url, { withCredentials: true })
-            .then(data => setBookings(data.data))
-    }, [url])
+        // axios.get(url, { withCredentials: true })
+        //     .then(data => setBookings(data.data))
+        axiosSecure.get(url)
+            .then(res => setBookings(res.data))
+
+    }, [url, axiosSecure])
 
     const handelDelete = id => {
 
