@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
+import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
     baseURL: 'http://localhost:5000',
@@ -8,16 +10,25 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
 
+    const navigate = useNavigate();
+    const {logOut} = useAuth();
+    
     useEffect(() => {
         axiosSecure.interceptors.response.use(res => {
-            console.log('res form hooks', res)
             return res;
         }, error => {
             if(error.response.status === 401 || error.response.status === 403){
-                console.log('log out')
+
+                logOut()
+                .then(()=>{
+                    navigate('/login')
+                })
+                .catch(error => {
+                    console.log(error)
+                })
             }
         })
-    }, [])
+    }, [logOut,navigate])
 
     return axiosSecure;
 };
