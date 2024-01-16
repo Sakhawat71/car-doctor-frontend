@@ -4,14 +4,14 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: `http://localhost:5000`,
     withCredentials: true,
 })
 
 const useAxiosSecure = () => {
 
-    const navigate = useNavigate();
     const {logOut} = useAuth();
+    const navigate = useNavigate();
     
     useEffect(() => {
         axiosSecure.interceptors.response.use(res => {
@@ -24,7 +24,7 @@ const useAxiosSecure = () => {
                     navigate('/login')
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log("!token" ,error)
                 })
             }
         })
