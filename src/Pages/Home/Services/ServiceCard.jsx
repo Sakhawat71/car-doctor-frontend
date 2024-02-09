@@ -15,7 +15,7 @@ const ServiceCard = ({ service }) => {
             <div className="card-body ">
                 <h2 className="card-title text-[#444] text-2xl font-bold">{title}</h2>
                 <div className="card-actions justify-between items-center">
-                    <h3 className='text-xl font-semibold text-[#FF3811]'>Price: {price}</h3>
+                    <h3 className='text-xl font-semibold text-[#FF3811]'>Price: ${price}</h3>
                     <Link to={`/checkout/${_id}`}><button ><GoArrowRight className='text-2xl text-[#FF3811]'/></button></Link>
                 </div>
             </div>
