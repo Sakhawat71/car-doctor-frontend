@@ -10,9 +10,10 @@ const Bookings = () => {
     const { user, loading } = useContext(AuthContext);
     const [bookings, setBookings] = useState([])
     const axiosSecure = useAxiosSecure();
+    const userEmail = user.email;
 
-    // const url = `http://localhost:5000/bookings?email=${user?.email}`;
-    const url = `/bookings?email=${user?.email}`;
+    // const url = `https://car-doctor-server-nu-ecru.vercel.app/bookings?email=${user?.email}`;
+    const url = `/bookings?email=${userEmail}`;
 
     useEffect(() => {
         // axios.get(url, { withCredentials: true })
@@ -20,7 +21,7 @@ const Bookings = () => {
         axiosSecure.get(url)
             .then(res => setBookings(res.data))
 
-    }, [url, axiosSecure])
+    }, [url, axiosSecure,userEmail])
 
     const handelDelete = id => {
 
@@ -35,7 +36,7 @@ const Bookings = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/bookings/${id}`)
+                axios.delete(`https://car-doctor-server-nu-ecru.vercel.app/bookings/${id}`)
                     .then(result => {
                         console.log(result.data)
                         if (result.data.deletedCount === 1) {
@@ -54,7 +55,7 @@ const Bookings = () => {
 
     const handelUpdateConfirm = id => {
         console.log(id)
-        axios.patch(`http://localhost:5000/bookings/${id}`, { status: 'confirm' })
+        axios.patch(`https://car-doctor-server-nu-ecru.vercel.app/bookings/${id}`, { status: 'confirm' })
             .then(data => {
                 if (data.data.modifiedCount === 1) {
 
