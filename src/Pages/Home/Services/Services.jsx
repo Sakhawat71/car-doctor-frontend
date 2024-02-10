@@ -6,11 +6,11 @@ const Services = () => {
 
     const [services, setServices] = useState([]);
     const [asc, setAsc] = useState(true);
-    const [search,setSearch] = useState(undefined)
+    const [search,setSearch] = useState('')
 
     useEffect(() => {
-        // const url = `https://car-doctor-server-nu-ecru.vercel.app`
-        const url = `http://localhost:5000`
+        const url = `https://car-doctor-server-nu-ecru.vercel.app`
+        // const url = `http://localhost:5000`
         axios.get(`${url}/services?sort=${asc ? `asc` : `dsc`}&search=${search}`, { withCredentials: true })
             .then(data => setServices(data.data))
     }, [asc,search])
